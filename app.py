@@ -6,25 +6,14 @@ import io
 import numpy as np
 import tensorflow as tf
 from flask_cors import CORS
-import gdown
 
 app = Flask(__name__)
 CORS(app)
 
-# El ID del archivo en Google Drive
-file_id = '18bptF6l4mT5crrt-61BLKGXoafmX8NqZ'
 
-# Construir la URL para descargar el archivo
-url = f'https://drive.google.com/uc?export=download&id={file_id}'
-
-# Ruta de destino donde quieres guardar el archivo temporalmente en Heroku
-output_path = '/tmp/model.h5'
-
-# Descargar el archivo
-gdown.download(url, output_path, quiet=False)
 
 # Carga tu modelo CNN (ajusta el nombre y la ruta del modelo)
-model = tf.keras.models.load_model('/tmp/model.h5')
+model = tf.keras.models.load_model('MejorModelo.h5')
 
 @app.route('/predict', methods=['POST'])
 def predict():
