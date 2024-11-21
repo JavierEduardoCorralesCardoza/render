@@ -11,7 +11,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Carga tu modelo CNN (ajusta el nombre y la ruta del modelo)
-model = tf.keras.models.load_model('MejorModelo.h5')
+model = tf.keras.models.load_model('modelo/MejorModelo.h5')
 
 @app.route('/predict', methods=['POST'])
 def predict():
