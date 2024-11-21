@@ -6,7 +6,20 @@
     <title>Cámara en vivo</title>
 </head>
 <body>
-    <h1>Streaming de la cámara en vivo</h1>
-    <img src="{{ url_for('video') }}" width="100%" />
+    <h1>Acceso a la Cámara en Vivo</h1>
+    <video id="video" width="100%" height="auto" autoplay></video>
+
+    <script>
+        // Acceder a la cámara
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function (stream) {
+                // Mostrar el video en el elemento <video>
+                var video = document.getElementById('video');
+                video.srcObject = stream;
+            })
+            .catch(function (error) {
+                console.log("Error al acceder a la cámara: ", error);
+            });
+    </script>
 </body>
 </html>
