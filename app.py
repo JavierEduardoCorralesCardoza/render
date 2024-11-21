@@ -6,11 +6,12 @@ import io
 import numpy as np
 import tensorflow as tf
 from flask_cors import CORS
+import os
 
 app = Flask(__name__)
 CORS(app)
 
-
+port = int(os.environ.get("PORT", 5000))
 
 # Carga tu modelo CNN (ajusta el nombre y la ruta del modelo)
 model = tf.keras.models.load_model('MejorModelo.h5')
@@ -38,4 +39,4 @@ def predict():
     return jsonify({'prediction': result[0]})  # Devuelve el resultado
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=port)
